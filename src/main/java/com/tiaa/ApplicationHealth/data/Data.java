@@ -16,9 +16,9 @@ public class Data {
     private long memoryUsage;
     @Column(name="`diskUsage`")
     private long diskUsage;
-    private int noOfThreads;
     @Column(name="`cpuUsage`")
     private double cpuUsage;
+    private int numberOfThread;
 
     @ManyToOne
     private Application application;
@@ -26,12 +26,12 @@ public class Data {
     public Data() {
     }
 
-    public Data(long dataId, String currentTime, long memoryUsage, long diskUsage, int noOfThreads, double cpuUsage, Application application) {
+    public Data(long dataId, String currentTime, long memoryUsage, long diskUsage, int numberOfThread, double cpuUsage, Application application) {
         this.dataId = dataId;
         this.currentTime = currentTime;
         this.memoryUsage = memoryUsage;
         this.diskUsage = diskUsage;
-        this.noOfThreads = noOfThreads;
+        this.numberOfThread = numberOfThread;
         this.cpuUsage = cpuUsage;
         this.application = application;
     }
@@ -68,13 +68,14 @@ public class Data {
         this.diskUsage = diskUsage;
     }
 
-    public int getNoOfThreads() {
-        return noOfThreads;
+    public int getNumberOfThread() {
+        return numberOfThread;
     }
 
-    public void setNoOfThreads(int noOfThreads) {
-        this.noOfThreads = noOfThreads;
+    public void setNumberOfThread(int numberOfThread) {
+        this.numberOfThread = numberOfThread;
     }
+
 
     public double getCpuUsage() {
         return cpuUsage;
@@ -99,7 +100,7 @@ public class Data {
                 ", currentTime=" + currentTime +
                 ", memoryUsage=" + memoryUsage +
                 ", diskUsage=" + diskUsage +
-                ", noOfThreads=" + noOfThreads +
+                ", numberOfThread=" + numberOfThread +
                 ", cpuUsage=" + cpuUsage +
                 ", application=" + application +
                 '}';
