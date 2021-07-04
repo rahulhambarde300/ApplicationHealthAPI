@@ -6,15 +6,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="data")
 public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long dataId;
+    @Column(name="`currentTime`")
     private String currentTime;
+    @Column(name="`memoryUsage`")
     private long memoryUsage;
+    @Column(name="`diskUsage`")
     private long diskUsage;
     private int noOfThreads;
+    @Column(name="`cpuUsage`")
     private double cpuUsage;
 
     @ManyToOne
