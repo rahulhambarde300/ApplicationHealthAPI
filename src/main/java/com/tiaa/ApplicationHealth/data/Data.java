@@ -1,9 +1,11 @@
 package com.tiaa.ApplicationHealth.data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tiaa.ApplicationHealth.application.Application;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Entity
 public class Data {
@@ -11,7 +13,9 @@ public class Data {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long dataId;
     @Column(name="`currentTime`")
-    private String currentTime;
+    //@Convert(converter = LocalDateTimeConverter.class)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime currentTime;
     @Column(name="`memoryUsage`")
     private long memoryUsage;
     @Column(name="`diskUsage`")
@@ -26,7 +30,7 @@ public class Data {
     public Data() {
     }
 
-    public Data(long dataId, String currentTime, long memoryUsage, long diskUsage, int numberOfThread, double cpuUsage, Application application) {
+    public Data(long dataId, LocalDateTime currentTime, long memoryUsage, long diskUsage, int numberOfThread, double cpuUsage, Application application) {
         this.dataId = dataId;
         this.currentTime = currentTime;
         this.memoryUsage = memoryUsage;
@@ -44,11 +48,11 @@ public class Data {
         this.dataId = dataId;
     }
 
-    public String getCurrentTime() {
+    public LocalDateTime getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(String currentTime) {
+    public void setCurrentTime(LocalDateTime currentTime) {
         this.currentTime = currentTime;
     }
 
