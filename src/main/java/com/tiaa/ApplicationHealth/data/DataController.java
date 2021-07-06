@@ -41,6 +41,7 @@ public class DataController {
     public ResponseEntity<?> addAllData(@RequestBody List<Data> datas){
         for(Data data: datas){
             data.setApplication(new Application(data.getApplicationID(),"","","",""));
+            parameterValueChecker.checkParameters(data);
         }
         dataService.addAllDatas(datas);
         return new ResponseEntity<>(HttpStatus.OK);
