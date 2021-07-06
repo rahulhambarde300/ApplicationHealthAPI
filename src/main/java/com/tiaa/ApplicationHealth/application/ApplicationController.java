@@ -29,7 +29,7 @@ public class ApplicationController {
     }
 
     @GetMapping("{appId}/name")
-    public Optional<Application> getApplication(Long appId) {
+    public Optional<Application> getApplication(@PathVariable("appId") Long appId) {
         //Check if an application exists and return
         Optional<Application> application = applicationService.findApplicationById(appId);
         return application;

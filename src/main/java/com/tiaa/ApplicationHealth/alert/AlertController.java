@@ -22,7 +22,7 @@ public class AlertController {
     }
 
     @GetMapping("/{appId}/alerts")
-    public ResponseEntity<List<Alert>> getAllApplicationAlerts(@PathVariable Long appId){
+    public ResponseEntity<List<Alert>> getAllApplicationAlerts(@PathVariable("appId") Long appId){
         return new ResponseEntity<>(alertService.getAlertByAppId(appId), HttpStatus.OK);
     }
 
