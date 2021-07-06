@@ -26,11 +26,12 @@ public class Data {
 
     @ManyToOne
     private Application application;
+    private Long applicationID;
 
     public Data() {
     }
 
-    public Data(long dataId, LocalDateTime currentTime, long memoryUsage, long diskUsage, int numberOfThread, double cpuUsage, Application application) {
+    public Data(long dataId, LocalDateTime currentTime, long memoryUsage, long diskUsage, int numberOfThread, double cpuUsage, Application application, Long applicationID) {
         this.dataId = dataId;
         this.currentTime = currentTime;
         this.memoryUsage = memoryUsage;
@@ -38,6 +39,7 @@ public class Data {
         this.numberOfThread = numberOfThread;
         this.cpuUsage = cpuUsage;
         this.application = application;
+        this.applicationID = applicationID;
     }
 
     public long getDataId() {
@@ -97,6 +99,14 @@ public class Data {
         this.application = application;
     }
 
+    public Long getApplicationID() {
+        return applicationID;
+    }
+
+    public void setApplicationID(Long applicationID) {
+        this.applicationID = applicationID;
+    }
+
     @Override
     public String toString() {
         return "Data{" +
@@ -104,9 +114,10 @@ public class Data {
                 ", currentTime=" + currentTime +
                 ", memoryUsage=" + memoryUsage +
                 ", diskUsage=" + diskUsage +
-                ", numberOfThread=" + numberOfThread +
                 ", cpuUsage=" + cpuUsage +
+                ", numberOfThread=" + numberOfThread +
                 ", application=" + application +
+                ", applicationId=" + applicationID +
                 '}';
     }
 }

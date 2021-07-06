@@ -15,14 +15,16 @@ public class DataService {
         this.dataRepo = dataRepo;
     }
 
-    public Data addData(Data data){
-        return dataRepo.save(data);
-    }
-
     public List<Data> getAllData(Long appId){
         List<Data> data = new ArrayList<>();
         dataRepo.findByApplicationAppId(appId).forEach(data::add);
         return data;
     }
+
+    public Data addData(Data data){
+        return dataRepo.save(data);
+    }
+
+    public List<Data> addAllDatas(List<Data> datas){ return dataRepo.saveAll(datas); }
 
 }

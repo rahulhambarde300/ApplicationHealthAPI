@@ -19,6 +19,12 @@ public class DataController {
         this.dataService = dataService;
     }
 
+
+    @GetMapping("/{appId}/data")
+    public ResponseEntity<List<Data>> getData(@PathVariable Long appId){
+        return new ResponseEntity<>(dataService.getAllData(appId), HttpStatus.OK);
+    }
+
     @PostMapping("/{appId}/data")
     public ResponseEntity<?> addData(@RequestBody Data data, @PathVariable Long appId){
         //Add application id to data
@@ -31,8 +37,12 @@ public class DataController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/{appId}/data")
-    public ResponseEntity<List<Data>> getData(@PathVariable Long appId){
-        return new ResponseEntity<>(dataService.getAllData(appId), HttpStatus.OK);
+    @PostMapping("/data")
+    public ResponseEntity<?> addAllData(@RequestBody List<Data> datas){
+        for(Data data: datas){
+            data.setApplication(new Application(data.getApplicationID(),"","","",""));
+        }
+        dataService.addAllDatas(datas);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
