@@ -12,8 +12,8 @@ public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long dataId;
+    private int counter;
     @Column(name="`currentTime`")
-    //@Convert(converter = LocalDateTimeConverter.class)
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime currentTime;
     @Column(name="`memoryUsage`")
@@ -38,6 +38,18 @@ public class Data {
         this.diskUsage = diskUsage;
         this.numberOfThread = numberOfThread;
         this.cpuUsage = cpuUsage;
+        this.application = application;
+        this.applicationID = applicationID;
+    }
+
+    public Data(long dataId, int counter, LocalDateTime currentTime, long memoryUsage, long diskUsage, double cpuUsage, int numberOfThread, Application application, Long applicationID) {
+        this.dataId = dataId;
+        this.counter = counter;
+        this.currentTime = currentTime;
+        this.memoryUsage = memoryUsage;
+        this.diskUsage = diskUsage;
+        this.cpuUsage = cpuUsage;
+        this.numberOfThread = numberOfThread;
         this.application = application;
         this.applicationID = applicationID;
     }
@@ -105,6 +117,14 @@ public class Data {
 
     public void setApplicationID(Long applicationID) {
         this.applicationID = applicationID;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 
     @Override

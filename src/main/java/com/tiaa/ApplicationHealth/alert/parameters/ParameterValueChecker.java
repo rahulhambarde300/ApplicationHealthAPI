@@ -44,7 +44,7 @@ public class ParameterValueChecker {
 
         //Create new alert and call addAlert endpoint
         alert = new Alert(data.getCurrentTime(), alertType, parameterValue, data.getApplication());
-        String uri = "http://localhost:8080/application/addAlert";
+        String uri = "http://localhost:8080/addAlert";
         RestTemplate restTemplate = new RestTemplate();
         Alert result = restTemplate.postForObject(uri, alert, Alert.class);
 

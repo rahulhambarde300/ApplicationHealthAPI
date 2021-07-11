@@ -14,7 +14,6 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/application")
 public class ApplicationController {
     private final ApplicationService applicationService;
 
@@ -22,7 +21,7 @@ public class ApplicationController {
         this.applicationService = applicationService;
     }
 
-    @GetMapping("/getApplicationNames")
+    @GetMapping("/fetch/application/getApplicationNames")
     public ResponseEntity<List<Application>> getAllApplications() {
         List<Application> applications = applicationService.findAllApplication();
         return new ResponseEntity<>(applications, HttpStatus.OK);
@@ -35,7 +34,7 @@ public class ApplicationController {
         return application;
     }
 
-    @PostMapping("/new")
+    @PostMapping("/insert/application/newApp")
     public ResponseEntity<ArrayList<Object>> addApplication(@RequestBody Application application){
         Application newApplication =applicationService.addApplication(application);
         ArrayList<Object> response = new ArrayList<>();
@@ -45,14 +44,8 @@ public class ApplicationController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PostMapping("/newApps")
+    @PostMapping("/insert/application/new")
     public ResponseEntity<List<HashMap<String,Object>>> addApplications(@RequestBody List<Application> applications){
-        //Todo: Get application by id api(Done)
-        //Loop array , check each entry available in db or not by get api
-        //If available :
-        //     add id and name to response array
-        //If not available:
-        //     create new entry , assign id and name and add it to response array
 
         List<Application> allApplications = applicationService.addAllApplications(applications);
         List<HashMap<String,Object>> response= new ArrayList<>();

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/application")
 public class AlertController {
     private final AlertService alertService;
 
@@ -16,12 +15,12 @@ public class AlertController {
         this.alertService = alertService;
     }
 
-    @GetMapping("/alerts")
+    @GetMapping("/fetch/alerts")
     public ResponseEntity<List<Alert>> getAllAlerts(){
         return new ResponseEntity<>(alertService.getAllAlerts(), HttpStatus.OK);
     }
 
-    @GetMapping("/{appId}/alerts")
+    @GetMapping("/fetch/{appId}/alerts")
     public ResponseEntity<List<Alert>> getAllApplicationAlerts(@PathVariable("appId") Long appId){
         return new ResponseEntity<>(alertService.getAlertByAppId(appId), HttpStatus.OK);
     }

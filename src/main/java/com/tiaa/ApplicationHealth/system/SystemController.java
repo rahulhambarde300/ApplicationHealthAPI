@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/system")
 public class SystemController {
     private SystemService systemService;
 
@@ -15,12 +14,12 @@ public class SystemController {
         this.systemService = systemService;
     }
 
-    @GetMapping("/data")
+    @GetMapping("/fetch/system/info")
     public ResponseEntity<List<System>> getSystem(){
         return new ResponseEntity<>(systemService.findSystem(), HttpStatus.OK);
     }
 
-    @PostMapping("/data")
+    @PostMapping("/insert/system/info")
     public ResponseEntity<?> addSystem(@RequestBody System system){
         systemService.addSystem(system);
         return new ResponseEntity<>(HttpStatus.OK);

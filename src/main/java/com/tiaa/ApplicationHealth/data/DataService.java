@@ -25,6 +25,33 @@ public class DataService {
         return dataRepo.save(data);
     }
 
-    public List<Data> addAllDatas(List<Data> datas){ return dataRepo.saveAll(datas); }
+    public void updateData(Data data) { dataRepo.save(data); }
+
+    public void addAllDatas(List<Data> datas){ dataRepo.saveAll(datas); }
+
+    public int getApplicationDataCount(Long appId){
+        return dataRepo.countByApplicationAppId(appId);
+    }
+
+    public Data getApplicationDataByCounter(Long appId, int counter){
+        return dataRepo.findByApplicationAppIdAndCounter(appId, counter);
+    }
+
+    public Data getRecentApplicationData(Long appId){
+        return dataRepo.findFirstByApplicationAppIdOrderByCurrentTimeDesc(appId);
+    }
+
+
+    //Analysis functions
+
+    public List<List<Long>> getMemoryAnalysis(){
+        return dataRepo.findMemoryAnalysis();
+    }
+
+    public List<List<Long>> getDiskAnalysis(){ return dataRepo.findDiskAnalysis(); }
+
+    public List<List<Double>> getCpuAnalysis(){
+        return dataRepo.findCpuAnalysis();
+    }
 
 }
